@@ -4,24 +4,16 @@
 #
 Name     : R-R2HTML
 Version  : 2.3.2
-Release  : 13
+Release  : 14
 URL      : https://cran.r-project.org/src/contrib/R2HTML_2.3.2.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/R2HTML_2.3.2.tar.gz
 Summary  : HTML Exportation for R Objects
 Group    : Development/Tools
 License  : GPL-2.0+
-BuildRequires : clr-R-helpers
+BuildRequires : buildreq-R
 
 %description
-file. Thus, making HTML reports is easy. Includes a function
-        that allows redirection on the fly, which appears to be very
-        useful for teaching purpose, as the student can keep a copy of
-        the produced output to keep all that he did during the course.
-        Package comes with a vignette describing how to write HTML
-        reports for statistical analysis. Finally, a driver for 'Sweave'
-        allows to parse HTML flat files containing R code and to
-        automatically write the corresponding outputs (tables and
-        graphs).
+http://www.activewidgets.com/
 
 %prep
 %setup -q -c -n R2HTML
@@ -31,11 +23,11 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1521300366
+export SOURCE_DATE_EPOCH=1552783453
 
 %install
+export SOURCE_DATE_EPOCH=1552783453
 rm -rf %{buildroot}
-export SOURCE_DATE_EPOCH=1521300366
 export LANG=C
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
 export FCFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
@@ -70,8 +62,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export _R_CHECK_FORCE_SUGGESTS_=false
-R CMD check --no-manual --no-examples --no-codoc -l %{buildroot}/usr/lib64/R/library R2HTML|| : 
-cp ~/.stash/* %{buildroot}/usr/lib64/R/library/*/libs/ || :
+R CMD check --no-manual --no-examples --no-codoc  R2HTML || :
 
 
 %files
