@@ -4,7 +4,7 @@
 #
 Name     : R-R2HTML
 Version  : 2.3.2
-Release  : 22
+Release  : 23
 URL      : https://cran.r-project.org/src/contrib/R2HTML_2.3.2.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/R2HTML_2.3.2.tar.gz
 Summary  : HTML Exportation for R Objects
@@ -13,25 +13,34 @@ License  : GPL-2.0+
 BuildRequires : buildreq-R
 
 %description
-http://www.activewidgets.com/
+file. Thus, making HTML reports is easy. Includes a function
+        that allows redirection on the fly, which appears to be very
+        useful for teaching purpose, as the student can keep a copy of
+        the produced output to keep all that he did during the course.
+        Package comes with a vignette describing how to write HTML
+        reports for statistical analysis. Finally, a driver for 'Sweave'
+        allows to parse HTML flat files containing R code and to
+        automatically write the corresponding outputs (tables and
+        graphs).
 
 %prep
 %setup -q -c -n R2HTML
+cd %{_builddir}/R2HTML
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1552783453
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1589523190
 
 %install
-export SOURCE_DATE_EPOCH=1552783453
+export SOURCE_DATE_EPOCH=1589523190
 rm -rf %{buildroot}
-export LANG=C
+export LANG=C.UTF-8
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
-export FCFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
-export FFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
+export FCFLAGS="$FFLAGS -O3 -flto -fno-semantic-interposition "
+export FFLAGS="$FFLAGS -O3 -flto -fno-semantic-interposition "
 export CXXFLAGS="$CXXFLAGS -O3 -flto -fno-semantic-interposition "
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -57,12 +66,12 @@ R CMD INSTALL --preclean --install-tests --built-timestamp=${SOURCE_DATE_EPOCH} 
 cp ~/.stash/* %{buildroot}/usr/lib64/R/library/*/libs/ || :
 %{__rm} -rf %{buildroot}%{_datadir}/R/library/R.css
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export _R_CHECK_FORCE_SUGGESTS_=false
-R CMD check --no-manual --no-examples --no-codoc  R2HTML || :
+R CMD check --no-manual --no-examples --no-codoc R2HTML || :
 
 
 %files
