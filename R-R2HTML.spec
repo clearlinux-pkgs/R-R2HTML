@@ -7,7 +7,7 @@
 #
 Name     : R-R2HTML
 Version  : 2.3.4
-Release  : 48
+Release  : 49
 URL      : https://cran.r-project.org/src/contrib/R2HTML_2.3.4.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/R2HTML_2.3.4.tar.gz
 Summary  : HTML Exportation for R Objects
